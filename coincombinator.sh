@@ -1,41 +1,52 @@
 #!/bin/bash
 
 declare -A Ischoicedict
-Ischoicedict[H]=0
-Ischoicedict[T]=0
-Ischoicedict[HH]=0
-Ischoicedict[HT]=0
-Ischoicedict[TH]=0
-Ischoicedict[TT]=0
+Ischoicedict[HHH]=0
+Ischoicedict[HHT]=0
+Ischoicedict[HTH]=0
+Ischoicedict[THH]=0
+Ischoicedict[HTT]=0
+Ischoicedict[THT]=0
+Ischoicedict[TTH]=0
+Ischoicedict[TTT]=0
 
-for (( i=0 ; i<10 ; i++ ))
+for (( i=0 ; i<20 ; i++ ))
 do
 	isChoice=$((RANDOM%2))
-	if [ $isChoice -eq 0 ]
-	then
-		((Ischoicedict[H]++))
-	else
-		((Ischoicedict[T]++))
-	fi
 	isChoice2=$((RANDOM%2))
-	case $isChoice$isChoice2 in
-		00)
-			((Ischoicedict[HH]++))
+	isChoice3=$((RANDOM%2))
+	case $isChoice$isChoice2$isChoice3 in
+		000)
+			((Ischoicedict[HHH]++))
 			;;
-		01)
-			((Ischoicedict[HT]++))
+		001)
+			((Ischoicedict[HHT]++))
 			;;
-		10)
-			((Ischoicedict[TH]++))
+		010)
+			((Ischoicedict[HTH]++))
 			;;
-		11)
-			((Ischoicedict[TT]++))
+		100)
+			((Ischoicedict[THH]++))
+			;;
+		011)
+			((Ischoicedict[HTT]++))
+			;;
+		101)
+			((Ischoicedict[THT]++))
+			;;
+		110)
+			((Ischoicedict[TTH]++))
+			;;
+		111)
+			((Ischoicedict[TTT]++))
 			;;
 	esac
 done
-echo "percnt of H is $((${Ischoicedict[H]}*100/10))%"
-echo "percnt of T is $((${Ischoicedict[T]}*100/10))%"
-echo "percnt of HH is $((${Ischoicedict[HH]}*100/10))%"
-echo "percnt of H T is $((${Ischoicedict[HT]}*100/10))%"
-echo "percnt of T H is $((${Ischoicedict[TH]}*100/10))%"
-echo "percnt of T T is $((${Ischoicedict[TT]}*100/10))%"
+echo "percnt of HHH is $((${Ischoicedict[HHH]}*100/20))%"
+echo "percnt of HHT is $((${Ischoicedict[HHT]}*100/20))%"
+echo "percnt of HTH is $((${Ischoicedict[HTH]}*100/20))%"
+echo "percnt of THH is $((${Ischoicedict[THH]}*100/20))%"
+echo "percnt of HTT is $((${Ischoicedict[HTT]}*100/20))%"
+echo "percnt of THT is $((${Ischoicedict[THT]}*100/20))%"
+echo "percnt of TTH is $((${Ischoicedict[TTH]}*100/20))%"
+echo "percnt of TTT is $((${Ischoicedict[TTT]}*100/20))%"
